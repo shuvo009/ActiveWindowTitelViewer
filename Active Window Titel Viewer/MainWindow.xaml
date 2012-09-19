@@ -1,0 +1,108 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:System="clr-namespace:System;assembly=mscorlib" 
+  xmlns:notifyTry="http://www.hardcodet.net/taskbar" 
+  x:Name="window" x:Class="Active_Window_Titel_Viewer.MainWindow"
+        mc:Ignorable="d"
+        Title="Active Window Titel Viewer" Height="502" Width="554" WindowStartupLocation="CenterScreen" FontSize="21.333" FontFamily="Cordia New" Background="#FF4B4B4B" Foreground="#FFE0E0E0" Icon="Images/ActIcon.ico">
+    <Window.Resources>
+    	<System:DateTime x:Key="DateTimeDataSource" d:IsDataSource="True"/>
+	</Window.Resources>
+	<Grid DataContext="{Binding Source={StaticResource DateTimeDataSource}}">
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition/>
+    	</Grid.ColumnDefinitions>
+		<Menu Height="30" VerticalAlignment="Top" Foreground="White" FontSize="18">
+			<MenuItem Header="_File">	
+				<MenuItem Header="_Export" Click="onExport_Click">
+			  		<MenuItem.Icon>
+							<Image Source="/Images/document_export.png" Width="25" Height="25"/>
+					</MenuItem.Icon>
+				</MenuItem>
+		    	<MenuItem Header="_Exit" Click="onExit_Click">
+		    			<MenuItem.Icon>
+							<Image Source="/Images/exit.png" Width="22" Height="22"/>
+					</MenuItem.Icon>  	
+				</MenuItem>
+			</MenuItem>
+			<MenuItem Header="_Options">
+				<MenuItem Header="_Setting">
+				     <MenuItem.Icon>
+						<Image Source="/Images/settings.png" Width="22" Height="22"/>
+					</MenuItem.Icon>  
+					<MenuItem Header="Strat with Start" VerticalContentAlignment="Center">
+					<MenuItem.Icon>
+                            <CheckBox Checked="stratWitStrat_Checked" Unchecked="stratWitStrat_Unchecked"/>
+					</MenuItem.Icon>
+					</MenuItem>
+				</MenuItem>
+			</MenuItem>
+		</Menu>
+    	<Path Data="M82,165 C433,61.5 226,271.5 241,205.5 256,139.5 32.499796,103.50016 241,69.000178 449.5002,34.5002 454.00021,82.500167 386.50017,105.00015 319.00013,127.50014 66.999993,269.99997 100.00001,109.50032" Fill="#FF565656" Margin="131.5,27.906,113.239,28.391" Stretch="Fill" Opacity="0.745" HorizontalAlignment="Center" VerticalAlignment="Center" d:IsLocked="True"/>
+    	<Grid HorizontalAlignment="Center" Width="535.416">
+    		<Grid.ColumnDefinitions>
+    			<ColumnDefinition Width="0.252*"/>
+    			<ColumnDefinition Width="0.6*"/>
+    			<ColumnDefinition Width="0.148*"/>
+    		</Grid.ColumnDefinitions>
+    		<TextBlock x:Name="textBlock" Height="30" Margin="8.159,38.667,0,0" TextWrapping="Wrap" Text="{Binding TempDataProperty.AppName, ElementName=window}" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1"/>
+    		<Label Content="Application Name : " Margin="3.998,34,0,0" Foreground="#FFD4D4D4" VerticalAlignment="Top" Height="32" Target="{Binding ElementName=textBlock, Mode=OneWay}" HorizontalAlignment="Right"/>
+    		<TextBlock x:Name="textBlock1" Margin="0,1,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Grid.Column="2"/>
+    		<Label Content="System Time :" Margin="0,-4,-4.247,0" Foreground="#FFD4D4D4" HorizontalAlignment="Right" VerticalAlignment="Top" Height="31.898" Target="{Binding ElementName=textBlock1, Mode=OneWay}" Grid.Column="1"/>
+    		<Label Content="Window Title :" Margin="36.509,60.898,1.167,0" Foreground="#FFD4D4D4" VerticalAlignment="Top" Height="31" Target="{Binding ElementName=textBlock2, Mode=OneWay}" d:LayoutOverrides="Width" HorizontalAlignment="Right"/>
+    		<TextBlock x:Name="textBlock2" Height="30" Margin="8.159,65.898,0,0" TextWrapping="Wrap" Text="{Binding TempDataProperty.WindowTitle, ElementName=window}" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1"/>
+    		<Label Content="Process Name :" Margin="24.748,95.898,0.503,0" Foreground="#FFD4D4D4" VerticalAlignment="Top" Height="31" Target="{Binding ElementName=textBlock2, Mode=OneWay}" d:LayoutOverrides="Width" HorizontalAlignment="Right"/>
+    		<TextBlock x:Name="textBlock2_Copy" Height="30" Margin="8.159,99.898,0,0" TextWrapping="Wrap" Text="{Binding TempDataProperty.PorcessName, ElementName=window}" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1"/>
+    		<Label Content="File Path :" Margin="63.011,128.898,0.503,0" Foreground="#FFD4D4D4" VerticalAlignment="Top" Height="31" Target="{Binding ElementName=textBlock2, Mode=OneWay}" d:LayoutOverrides="Width" HorizontalAlignment="Right"/>
+    		<TextBlock x:Name="textBlock2_Copy1" Height="30" Margin="8.159,133.898,0,0" TextWrapping="Wrap" Text="{Binding TempDataProperty.FileName, ElementName=window}" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1"/>
+    		<Label Content="Handle :" Margin="0,159.898,0.341,0" Foreground="#FFD4D4D4" HorizontalAlignment="Right" Target="{Binding ElementName=textBlock2, Mode=OneWay}" Height="31" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
+    		<TextBlock x:Name="textBlock2_Copy2" Margin="8.159,164.898,0,0" TextWrapping="Wrap" Text="{Binding TempDataProperty.Handel, ElementName=window}" Height="30" VerticalAlignment="Top" d:LayoutOverrides="Height" HorizontalAlignment="Left" Grid.Column="1"/>
+    		<ListView Margin="31.917,0,30.5,8" Background="{x:Null}" BorderBrush="{x:Null}" ItemsSource="{Binding ClickHistory, ElementName=window}" ItemContainerStyle="{DynamicResource ListViewItemContainerStyle}" Height="217" VerticalAlignment="Bottom" Grid.ColumnSpan="3" >
+    			<ListView.View>
+    				<GridView>
+    					<GridViewColumn Header="Time" CellTemplate="{StaticResource CommonColumstyle}"  DisplayMemberBinding="{Binding Time}" Width="50"/>
+    					<GridViewColumn Header="App Name" CellTemplate="{StaticResource CommonColumstyle}"   DisplayMemberBinding="{Binding AppName}" Width="90"/>
+    					<GridViewColumn Header="Window Title" CellTemplate="{StaticResource CommonColumstyle}"   DisplayMemberBinding="{Binding WindowTitle}" Width="110"/>
+    					<GridViewColumn Header="Process Name" CellTemplate="{StaticResource CommonColumstyle}"   DisplayMemberBinding="{Binding PorcessName}" Width="120"/>
+    					<GridViewColumn Header="File Path" CellTemplate="{StaticResource CommonColumstyle}"  DisplayMemberBinding="{Binding FileName}" Width="80"/>
+    				</GridView>
+    			</ListView.View>
+				<ListView.ContextMenu>
+					<ContextMenu FontSize="18" Foreground="White">
+						<MenuItem Header="Clear" Click="onClear_Click">
+							<MenuItem.Icon>
+									<Image Source="/Images/clear.png" Width="25" Height="25"/>
+							</MenuItem.Icon>
+						</MenuItem>
+						<MenuItem Header="_Export" Click="onExport_Click">
+							<MenuItem.Icon>
+									<Image Source="/Images/document_export.png" Width="25" Height="25"/>
+							</MenuItem.Icon>
+						</MenuItem>
+					</ContextMenu>
+				</ListView.ContextMenu>
+    		</ListView>
+    		<TextBlock x:Name="textBlock1_Copy" Margin="-0.001,205,0,229" TextWrapping="Wrap" Text="{Binding Date.Today, Mode=OneWay, StringFormat=\{0:dd/MM/yyyy\}}" HorizontalAlignment="Left" d:LayoutOverrides="HorizontalAlignment" Grid.Column="1"/>
+    		<Label Content="System Date :" Margin="0,200,0.503,0" Foreground="#FFD4D4D4" VerticalAlignment="Top" Height="31.898" Target="{Binding ElementName=textBlock1, Mode=OneWay}" HorizontalAlignment="Right"/>
+    		
+    	</Grid>
+		<notifyTry:TaskbarIcon x:Name="notifyInSysTry" Height="1" Width="1" IconSource="/Images/ActIcon.ico">
+			<notifyTry:TaskbarIcon.ContextMenu>
+				<ContextMenu Foreground="White" FontSize="15">
+					<MenuItem Header="_Restore" Click="onRestore_Click">
+						<MenuItem.Icon>
+							<Image Source="/Images/view_restore.png" Width="22" Height="22"/>
+					</MenuItem.Icon>  	
+					</MenuItem>
+					<MenuItem Header="_Exit" Click="onExit_Click">
+		    			<MenuItem.Icon>
+							<Image Source="/Images/exit.png" Width="22" Height="22"/>
+					</MenuItem.Icon>  	
+				</MenuItem>
+				</ContextMenu>
+			</notifyTry:TaskbarIcon.ContextMenu>
+		</notifyTry:TaskbarIcon>
+    </Grid>
+</Window>

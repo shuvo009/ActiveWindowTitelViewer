@@ -1,0 +1,16 @@
+﻿<Application x:Class="Active_Window_Titel_Viewer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    	<ResourceDictionary>
+    		<ResourceDictionary.MergedDictionaries>
+    			<ResourceDictionary Source="Control Style/ListViewStyle.xaml"/>
+    			<ResourceDictionary Source="Control Style/ScrollViewStyle.xaml"/>
+    			<ResourceDictionary Source="Control Style/MenuStyle.xaml"/>
+    		</ResourceDictionary.MergedDictionaries>
+    	</ResourceDictionary>
+         
+    </Application.Resources>
+</Application>
